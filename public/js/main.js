@@ -807,10 +807,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Créer un onglet d'information pour les applications non disponibles à distance
-     * @param {string} title - Titre de l'application
-     * @param {string} url - URL de l'application (qui n'est pas accessible)
-     */
+  * Créer un onglet d'information pour les applications non disponibles à distance
+  * @param {string} title - Titre de l'application
+  * @param {string} url - URL de l'application (qui n'est pas accessible)
+  */
     function createInfoTab(title, url) {
         const tabId = `tab-${++tabCounter}`;
 
@@ -854,21 +854,40 @@ document.addEventListener('DOMContentLoaded', function () {
         const infoContent = document.createElement('div');
         infoContent.className = 'info-container';
         infoContent.innerHTML = `
-            <div class="info-box">
-                <div class="info-icon"><i class="fas fa-info-circle"></i></div>
-                <h2>Приложение недоступно онлайн</h2>
-                <p>Это внутреннее приложение (<code>${url}</code>) доступно только в локальной сети компании.</p>
-                <p>Чтобы использовать это приложение:</p>
-                <ul>
-                    <li>Подключитесь к корпоративной сети (напрямую или через VPN)</li>
-                    <li>Используйте TWOWIN Dashboard локально</li>
-                </ul>
-                <p>Для получения дополнительной информации обратитесь в ИТ-отдел.</p>
+        <div class="info-box">
+            <div class="info-icon"><i class="fas fa-info-circle"></i></div>
+            <h2>Приложение недоступно онлайн</h2>
+            <p>Это внутреннее приложение (<code>${url}</code>) доступно только в локальной сети компании.</p>
+            <p>Чтобы использовать это приложение:</p>
+            <ul>
+                <li>Подключитесь к корпоративной сети (напрямую или через VPN)</li>
+                <li>Используйте TWOWIN Dashboard локально</li>
+            </ul>
+            <div class="action-buttons">
+                <a href="${url}" target="_blank" class="open-external-btn">
+                    <i class="fas fa-external-link-alt"></i> Открыть в новой вкладке
+                </a>
+                <button class="contact-btn">
+                    <i class="fas fa-headset"></i> Связаться с ИТ-отделом
+                </button>
             </div>
-        `;
+            <p class="info-note">Для получения дополнительной информации обратитесь в ИТ-отдел.</p>
+        </div>
+    `;
 
         tabContent.appendChild(infoContent);
         tabContents.appendChild(tabContent);
+
+        // Ajouter l'événement pour le bouton de contact IT
+        setTimeout(() => {
+            const contactBtn = tabContent.querySelector('.contact-btn');
+            if (contactBtn) {
+                contactBtn.addEventListener('click', function () {
+                    // Vous pouvez remplacer cette action par l'ouverture d'un chat, un email, etc.
+                    alert('Для получения помощи обратитесь в ИТ-отдел: it@twowin.ru или +7 (XXX) XXX-XX-XX');
+                });
+            }
+        }, 0);
 
         // Enregistrer l'onglet dans la liste des onglets ouverts
         openTabs.set(tabId, {
@@ -881,6 +900,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Activer le nouvel onglet
         activateTab(tabId);
     }
+
 
     /**
      * Fonction pour activer un onglet spécifique
