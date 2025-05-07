@@ -704,6 +704,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const addTabButton = document.getElementById('add-tab-button');
     const menuItems = document.querySelectorAll('.sidebar li');
     const appCards = document.querySelectorAll('.app-card');
+    const themeToggle = document.getElementById('theme-toggle');
 
     // Stockage des informations sur les onglets ouverts
     const openTabs = new Map();
@@ -717,6 +718,44 @@ document.addEventListener('DOMContentLoaded', function () {
         element: document.getElementById('home-tab'),
         content: document.getElementById('home-content')
     });
+    // Gestion du mode sombre/clair
+    function initializeTheme() {
+        // Récupérer le mode préféré de l'utilisateur depuis localStorage
+        const prefersDarkMode = localStorage.getItem('darkMode') === 'true';
+        const prefersColorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        // Appliquer le mode sombre si préféré dans localStorage ou par le système
+        if (prefersDarkMode || (prefersColorScheme && localStorage.getItem('darkMode') === null)) {
+            document.body.classList.add('dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            themeToggle.title = "Включить светлую тему";
+        } else {
+            document.body.classList.remove('dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            themeToggle.title = "Включить тёмную тему";
+        }
+    }
+
+    // Événement pour le bouton de bascule du thème
+    themeToggle.addEventListener('click', function () {
+        // Basculer le mode sombre
+        const isDarkMode = document.body.classList.toggle('dark-mode');
+
+        // Mettre à jour l'icône
+        if (isDarkMode) {
+            this.innerHTML = '<i class="fas fa-sun"></i>';
+            this.title = "Включить светлую тему";
+        } else {
+            this.innerHTML = '<i class="fas fa-moon"></i>';
+            this.title = "Включить тёмную тему";
+        }
+
+        // Enregistrer la préférence
+        localStorage.setItem('darkMode', isDarkMode);
+    });
+
+    // Initialiser le thème au chargement
+    initializeTheme();
 
     /**
      * Fonction pour ouvrir une application dans un nouvel onglet
