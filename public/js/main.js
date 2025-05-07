@@ -807,10 +807,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-  * Créer un onglet d'information pour les applications non disponibles à distance
-  * @param {string} title - Titre de l'application
-  * @param {string} url - URL de l'application (qui n'est pas accessible)
-  */
+     * Créer un onglet d'information pour les applications non disponibles à distance
+     * @param {string} title - Titre de l'application
+     * @param {string} url - URL de l'application (qui n'est pas accessible)
+     */
     function createInfoTab(title, url) {
         const tabId = `tab-${++tabCounter}`;
 
@@ -850,6 +850,10 @@ document.addEventListener('DOMContentLoaded', function () {
         tabContent.className = 'tab-content';
         tabContent.id = `${tabId}-content`;
 
+        // Formatter le numéro de téléphone pour Telegram (sans espaces ni caractères spéciaux)
+        const telegramPhone = "+79502036862";
+        const telegramLink = `https://t.me/${telegramPhone}`;
+
         // Contenu d'information
         const infoContent = document.createElement('div');
         infoContent.className = 'info-container';
@@ -867,27 +871,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 <a href="${url}" target="_blank" class="open-external-btn">
                     <i class="fas fa-external-link-alt"></i> Открыть в новой вкладке
                 </a>
-                <button class="contact-btn">
-                    <i class="fas fa-headset"></i> Связаться с ИТ-отделом
-                </button>
+                <a href="${telegramLink}" target="_blank" class="contact-btn">
+                    <i class="fab fa-telegram"></i> Связаться с ИТ-отделом
+                </a>
             </div>
-            <p class="info-note">Для получения дополнительной информации обратитесь в ИТ-отдел.</p>
+            <p class="info-note">Телефон технической поддержки: +7 950 203 6862</p>
         </div>
     `;
 
         tabContent.appendChild(infoContent);
         tabContents.appendChild(tabContent);
-
-        // Ajouter l'événement pour le bouton de contact IT
-        setTimeout(() => {
-            const contactBtn = tabContent.querySelector('.contact-btn');
-            if (contactBtn) {
-                contactBtn.addEventListener('click', function () {
-                    // Vous pouvez remplacer cette action par l'ouverture d'un chat, un email, etc.
-                    alert('Для получения помощи обратитесь в ИТ-отдел: it@twowin.ru или +7 (XXX) XXX-XX-XX');
-                });
-            }
-        }, 0);
 
         // Enregistrer l'onglet dans la liste des onglets ouverts
         openTabs.set(tabId, {
@@ -900,6 +893,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Activer le nouvel onglet
         activateTab(tabId);
     }
+
 
 
     /**
