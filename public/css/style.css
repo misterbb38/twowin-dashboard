@@ -1,0 +1,460 @@
+/* Variables de couleur et de style */
+:root {
+    --primary-color: #27ae60; /* Couleur verte de TWOWIN */
+    --primary-hover: #219955;
+    --secondary-color: #34495e; /* Couleur foncée pour les textes et titres */
+    --light-bg: #f9f9f9; /* Arrière-plan clair */
+    --white: #ffffff;
+    --border-color: #e5e5e5;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    background-color: var(--light-bg);
+    line-height: 1.6;
+}
+
+/* Structure principale de l'application */
+.app-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Sidebar / Menu latéral */
+.sidebar {
+    width: 280px;
+    background-color: var(--white);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-shadow: var(--shadow-sm);
+    z-index: 10;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+    margin-right: 15px;
+}
+
+.logo-container h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.menu-category {
+    margin-top: 20px;
+    padding: 0 15px 15px;
+}
+
+.menu-category h2 {
+    font-size: 15px;
+    color: #777;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    font-weight: 500;
+}
+
+.menu-category ul {
+    list-style-type: none;
+}
+
+.menu-category li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-bottom: 5px;
+}
+
+.menu-category li:hover {
+    background-color: rgba(39, 174, 96, 0.1);
+}
+
+.menu-category li.active {
+    background-color: rgba(39, 174, 96, 0.15);
+    color: var(--primary-color);
+}
+
+.menu-category li i {
+    width: 24px;
+    margin-right: 10px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.menu-category li span {
+    font-size: 14px;
+}
+
+/* Contenu principal */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Barre d'onglets */
+.tab-bar {
+    height: 50px;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    box-shadow: var(--shadow-sm);
+    z-index: 5;
+}
+
+.tab-list {
+    display: flex;
+    overflow-x: auto;
+    flex: 1;
+    height: 100%;
+    scrollbar-width: thin;
+}
+
+/* Masquer la scrollbar mais conserver la fonctionnalité */
+.tab-list::-webkit-scrollbar {
+    height: 3px;
+}
+
+.tab-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.tab-list::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 3px;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    min-width: 120px;
+    max-width: 200px;
+    height: 100%;
+    border-right: 1px solid var(--border-color);
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s;
+    background-color: #f5f5f5;
+}
+
+.tab:hover {
+    background-color: #eaeaea;
+}
+
+.tab.active {
+    background-color: var(--white);
+}
+
+.tab.active:after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.tab-title {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+.tab-close {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    font-size: 12px;
+    color: #999;
+}
+
+.tab-close:hover {
+    background-color: #ddd;
+    color: #333;
+}
+
+#add-tab-button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    color: #777;
+    transition: var(--transition);
+}
+
+#add-tab-button:hover {
+    background-color: #eee;
+    color: var(--primary-color);
+}
+
+/* Zone de contenu des onglets */
+.tab-contents {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--white);
+    display: none;
+    overflow: auto;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+iframe.app-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Page d'accueil */
+.welcome-header {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: var(--white);
+}
+
+.welcome-header h1 {
+    font-size: 28px;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.welcome-header p {
+    font-size: 16px;
+    color: #777;
+}
+
+.app-categories {
+    padding: 20px;
+}
+
+.app-category-section {
+    margin-bottom: 40px;
+}
+
+.app-category-section h2 {
+    font-size: 20px;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.app-category-section h2 i {
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+.app-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.app-card {
+    display: flex;
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.app-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.app-icon {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(39, 174, 96, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.app-icon i {
+    font-size: 22px;
+    color: var(--primary-color);
+}
+
+.app-details h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+}
+
+.app-details p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Styles pour le conteneur d'erreur */
+.error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.error-box {
+    background: white;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.error-icon {
+    font-size: 50px;
+    color: #e74c3c;
+    margin-bottom: 20px;
+}
+
+.error-box h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.error-box p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.error-code {
+    background: #f1f1f1;
+    padding: 8px 12px;
+    border-radius: 4px;
+    display: inline-block;
+    font-family: monospace;
+    margin-bottom: 20px;
+    color: #777;
+}
+
+.retry-button {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.retry-button:hover {
+    background-color: #219955;
+}
+
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 70px;
+        transition: width 0.3s;
+    }
+
+    .logo-container h1,
+    .menu-category h2,
+    .menu-category li span {
+        display: none;
+    }
+
+    .menu-category li {
+        justify-content: center;
+    }
+
+    .menu-category li i {
+        margin-right: 0;
+    }
+
+    .app-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Possibilité d'ouvrir le menu au survol sur appareils tactiles */
+    .sidebar:hover {
+        width: 280px;
+    }
+    
+    .sidebar:hover .logo-container h1,
+    .sidebar:hover .menu-category h2,
+    .sidebar:hover .menu-category li span {
+        display: block;
+    }
+    
+    .sidebar:hover .menu-category li {
+        justify-content: flex-start;
+    }
+    
+    .sidebar:hover .menu-category li i {
+        margin-right: 10px;
+    }
+}
