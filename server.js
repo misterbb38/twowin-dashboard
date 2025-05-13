@@ -7,7 +7,7 @@ const path = require('path');
 
 // Initialisation de l'application Express
 const app = express();
-const PORT = 2000;
+const PORT = process.env.PORT || 2000;
 
 // Configuration pour servir les fichiers statiques depuis le dossier "public"
 app.use(express.static(path.join(__dirname, 'public')));
