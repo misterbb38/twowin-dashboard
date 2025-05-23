@@ -1,228 +1,340 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TWOWIN.RU - Все для стройки и ремонта</title>
     <!-- Font Awesome pour les icônes -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <!-- Google Fonts - Roboto -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <!-- Notre CSS personnalisé -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <div class="app-container">
-        <!-- Sidebar / Menu latéral -->
-        <div class="sidebar">
-            <div class="logo-container">
-                <div class="logo">
-                    <img src="logo.png" alt="TWOWIN Logo" width="120" height="40">
-                </div>
-                <h1></h1>
-                <button id="theme-toggle" class="theme-toggle" title="Сменить тему">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
-            <!-- Bouton de bascule du thème clair/sombre -->
+      <!-- Sidebar / Menu latéral -->
+      <div class="sidebar">
+        <div class="logo-container">
+          <div class="logo">
+            <img src="logo.png" alt="TWOWIN Logo" width="120" height="40" />
+          </div>
+          <h1></h1>
+          <button id="theme-toggle" class="theme-toggle" title="Сменить тему">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+        <!-- Bouton de bascule du thème clair/sombre -->
 
-            
-            <!-- Sections de menu avec les applications -->
-            <div class="menu-category">
-                <h2>Логистика</h2>
-                <ul>
-                    <li data-url="https://delivery-calculator-7kdr.onrender.com" data-title="Калькулятор доставки">
-                        <i class="fas fa-truck"></i>
-                        <span>Калькулятор доставки</span>
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="menu-category">
-                <h2>IT сервисы</h2>
-                <ul>
-                    <li data-url="https://frontpassword.onrender.com/" data-title="Менеджер паролей">
-                        <i class="fas fa-key"></i>
-                        <span>Менеджер паролей</span>
-                    </li>
-                    <li data-url="http://192.168.1.29:3002/" data-title="Объединение Excel файлов">
-                        <i class="fas fa-file-excel"></i>
-                        <span>Объединение Excel файлов</span>
-                    </li>
-                    <li data-url="http://192.168.1.29:4001/" data-title="Редактор изображений">
-                        <i class="fas fa-image"></i>
-                        <span>Редактор изображений</span>
-                    </li>
-                    <li data-url="https://caracproduit.onrender.com/" data-title="Технические характеристики">
-                        <i class="fas fa-cogs"></i>
-                        <span>Технические характеристики</span>
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="menu-category">
-                <h2>Коммерческий отдел</h2>
-                <ul>
-                    <li data-url="https://chatbotc.onrender.com/" data-title="Twowin AI">
-                        <i class="fas fa-robot"></i>
-                        <span>Twowin AI</span>
-                    </li>
-                    <li data-url="https://descriptionai-0dh0.onrender.com/" data-title="Генерация описаний товаров">
-                        <i class="fas fa-pen-fancy"></i>
-                        <span>Генерация описаний товаров</span>
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="menu-category">
-                <h2>Бухгалтерия</h2>
-                <ul>
-                    <li data-url="https://contrattwowin.onrender.com/" data-title="Генератор Договоров">
-                        <i class="fas fa-file-contract"></i>
-                        <span>Генератор Договоров</span>
-                    </li>
-                </ul>
-            </div>
+        <!-- Sections de menu avec les applications -->
+        <div class="menu-category">
+          <h2>Логистика</h2>
+          <ul>
+            <li
+              data-url="https://delivery-calculator-7kdr.onrender.com"
+              data-title="Калькулятор доставки"
+            >
+              <i class="fas fa-truck"></i>
+              <span>Калькулятор доставки</span>
+            </li>
+          </ul>
         </div>
-        
-        <!-- Contenu principal -->
-        <div class="main-content">
-            <!-- Barre d'onglets -->
-            <div class="tab-bar">
-                <div class="tab-list" id="tab-list">
-                    <!-- L'onglet d'accueil par défaut -->
-                    <div class="tab active" id="home-tab" data-tab-id="home">
-                        <span class="tab-title">Главная</span>
-                        <!-- Pas de bouton de fermeture pour l'onglet d'accueil -->
-                    </div>
-                    <!-- D'autres onglets seront ajoutés dynamiquement via JavaScript -->
-                </div>
-                <button id="add-tab-button" title="Новая вкладка">
-                    <i class="fas fa-plus"></i>
-                </button>
-            </div>
-            
-            <!-- Conteneur pour le contenu des onglets -->
-            <div class="tab-contents">
-                <!-- Contenu de l'onglet d'accueil -->
-                <div class="tab-content active" id="home-content">
-                    <div class="welcome-header">
-                        <h1>Добро пожаловать в платформу TWOWIN</h1>
-                        <p>Выберите приложение из меню слева или нажмите на карточку ниже, чтобы начать работу</p>
-                    </div>
-                    
-                    <div class="app-categories">
-                        <!-- Catégorie Logistique -->
-                        <div class="app-category-section">
-                            <h2><i class="fas fa-truck"></i> Логистика</h2>
-                            <div class="app-cards">
-                                <div class="app-card" data-url="https://delivery-calculator-7kdr.onrender.com/" data-title="Калькулятор доставки">
-                                    <div class="app-icon">
-                                        <i class="fas fa-calculator"></i>
-                                    </div>
-                                    <div class="app-details">
-                                        <h3>Калькулятор доставки</h3>
-                                        <p>Рассчитайте стоимость доставки вашего груза быстро и точно</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Catégorie IT Services -->
-                        <div class="app-category-section">
-                            <h2><i class="fas fa-laptop-code"></i> IT сервисы</h2>
-                            <div class="app-cards">
-                                <div class="app-card" data-url="https://frontpassword.onrender.com" data-title="Менеджер паролей">
-                                    <div class="app-icon">
-                                        <i class="fas fa-key"></i>
-                                    </div>
-                                    <div class="app-details">
-                                        <h3>Менеджер паролей</h3>
-                                        <p>Безопасное управление корпоративными паролями и доступами</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="app-card" data-url="http://192.168.1.29:3002/" data-title="Объединение Excel файлов">
-                                    <div class="app-icon">
-                                        <i class="fas fa-file-excel"></i>
-                                    </div>
-                                    <div class="app-details">
-                                        <h3>Объединение Excel файлов</h3>
-                                        <p>Извлечение и объединение данных из различных таблиц Excel</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="app-card" data-url="http://192.168.1.29:4001/" data-title="Редактор изображений">
-                                    <div class="app-icon">
-                                        <i class="fas fa-image"></i>
-                                    </div>
-                                    <div class="app-details">
-                                        <h3>Редактор изображений</h3>
-                                        <p>Профессиональная обработка изображений для сайта и каталогов</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="app-card" data-url="https://caracproduit.onrender.com/" data-title="Технические характеристики">
-                                    <div class="app-icon">
-                                        <i class="fas fa-cogs"></i>
-                                    </div>
-                                    <div class="app-details">
-                                        <h3>Технические характеристики</h3>
-                                        <p>Автоматическое получение и обработка технических характеристик товаров</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Catégorie Commercial -->
-                        <div class="app-category-section">
-                            <h2><i class="fas fa-chart-line"></i> Коммерческий отдел</h2>
-                            <div class="app-cards">
-                                <div class="app-card" data-url="https://chatbotc.onrender.com/" data-title="Twowin AI">
-                                    <div class="app-icon">
-                                        <i class="fas fa-robot"></i>
-                                    </div>
-                                    <div class="app-details">
-                                        <h3>Twowin AI</h3>
-                                        <p>Интеллектуальный помощник по строительству и ремонту для клиентов компании</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="app-card" data-url="https://descriptionai-0dh0.onrender.com/" data-title="Генерация описаний товаров">
-                                    <div class="app-icon">
-                                        <i class="fas fa-pen-fancy"></i>
-                                    </div>
-                                    <div class="app-details">
-                                        <h3>Генерация описаний товаров</h3>
-                                        <p>Создание уникальных и привлекательных описаний для товаров каталога</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Catégorie Comptabilité -->
-                        <div class="app-category-section">
-                            <h2><i class="fas fa-file-invoice-dollar"></i> Бухгалтерия</h2>
-                            <div class="app-cards">
-                                <div class="app-card" data-url="https://contrattwowin.onrender.com/" data-title="Генератор Договоров">
-                                    <div class="app-icon">
-                                        <i class="fas fa-file-contract"></i>
-                                    </div>
-                                    <div class="app-details">
-                                        <h3>Генератор Договоров</h3>
-                                        <p>Автоматическое создание и управление договорами с клиентами и поставщиками</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Les autres contenus d'onglets seront ajoutés dynamiquement -->
-            </div>
+
+        <div class="menu-category">
+          <h2>IT сервисы</h2>
+          <ul>
+            <li
+              data-url="https://frontpassword.onrender.com/"
+              data-title="Менеджер паролей"
+            >
+              <i class="fas fa-key"></i>
+              <span>Менеджер паролей</span>
+            </li>
+            <li
+              data-url="http://192.168.1.29:3002/"
+              data-title="Объединение Excel файлов"
+            >
+              <i class="fas fa-file-excel"></i>
+              <span>Объединение Excel файлов</span>
+            </li>
+            <li
+              data-url="http://192.168.1.29:4001/"
+              data-title="Редактор изображений"
+            >
+              <i class="fas fa-image"></i>
+              <span>Редактор изображений</span>
+            </li>
+            <li
+              data-url="https://caracproduit.onrender.com/"
+              data-title="Технические характеристики"
+            >
+              <i class="fas fa-cogs"></i>
+              <span>Технические характеристики</span>
+            </li>
+          </ul>
         </div>
+
+        <div class="menu-category">
+          <h2>Коммерческий отдел</h2>
+          <ul>
+            <li
+              data-url="https://chatbotc.onrender.com/"
+              data-title="Twowin AI"
+            >
+              <i class="fas fa-robot"></i>
+              <span>Twowin AI</span>
+            </li>
+            <li
+              data-url="https://descriptionai-0dh0.onrender.com/"
+              data-title="Генерация описаний товаров"
+            >
+              <i class="fas fa-pen-fancy"></i>
+              <span>Генерация описаний товаров</span>
+            </li>
+            <li
+              data-url="https://product-app-94l7.onrender.com/"
+              data-title="Управление продуктами поставщика"
+            >
+              <i class="fas fa-boxes"></i>
+              <span>Управление продуктами поставщика</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="menu-category">
+          <h2>Бухгалтерия</h2>
+          <ul>
+            <li
+              data-url="https://contrattwowin.onrender.com/"
+              data-title="Генератор Договоров"
+            >
+              <i class="fas fa-file-contract"></i>
+              <span>Генератор Договоров</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Contenu principal -->
+      <div class="main-content">
+        <!-- Barre d'onglets -->
+        <div class="tab-bar">
+          <div class="tab-list" id="tab-list">
+            <!-- L'onglet d'accueil par défaut -->
+            <div class="tab active" id="home-tab" data-tab-id="home">
+              <span class="tab-title">Главная</span>
+              <!-- Pas de bouton de fermeture pour l'onglet d'accueil -->
+            </div>
+            <!-- D'autres onglets seront ajoutés dynamiquement via JavaScript -->
+          </div>
+          <button id="add-tab-button" title="Новая вкладка">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+
+        <!-- Conteneur pour le contenu des onglets -->
+        <div class="tab-contents">
+          <!-- Contenu de l'onglet d'accueil -->
+          <div class="tab-content active" id="home-content">
+            <div class="welcome-header">
+              <h1>Добро пожаловать в платформу TWOWIN</h1>
+              <p>
+                Выберите приложение из меню слева или нажмите на карточку ниже,
+                чтобы начать работу
+              </p>
+            </div>
+
+            <div class="app-categories">
+              <!-- Catégorie Logistique -->
+              <div class="app-category-section">
+                <h2><i class="fas fa-truck"></i> Логистика</h2>
+                <div class="app-cards">
+                  <div
+                    class="app-card"
+                    data-url="https://delivery-calculator-7kdr.onrender.com/"
+                    data-title="Калькулятор доставки"
+                  >
+                    <div class="app-icon">
+                      <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="app-details">
+                      <h3>Калькулятор доставки</h3>
+                      <p>
+                        Рассчитайте стоимость доставки вашего груза быстро и
+                        точно
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Catégorie IT Services -->
+              <div class="app-category-section">
+                <h2><i class="fas fa-laptop-code"></i> IT сервисы</h2>
+                <div class="app-cards">
+                  <div
+                    class="app-card"
+                    data-url="https://frontpassword.onrender.com"
+                    data-title="Менеджер паролей"
+                  >
+                    <div class="app-icon">
+                      <i class="fas fa-key"></i>
+                    </div>
+                    <div class="app-details">
+                      <h3>Менеджер паролей</h3>
+                      <p>
+                        Безопасное управление корпоративными паролями и
+                        доступами
+                      </p>
+                    </div>
+                  </div>
+
+                  <div
+                    class="app-card"
+                    data-url="http://192.168.1.29:3002/"
+                    data-title="Объединение Excel файлов"
+                  >
+                    <div class="app-icon">
+                      <i class="fas fa-file-excel"></i>
+                    </div>
+                    <div class="app-details">
+                      <h3>Объединение Excel файлов</h3>
+                      <p>
+                        Извлечение и объединение данных из различных таблиц
+                        Excel
+                      </p>
+                    </div>
+                  </div>
+
+                  <div
+                    class="app-card"
+                    data-url="http://192.168.1.29:4001/"
+                    data-title="Редактор изображений"
+                  >
+                    <div class="app-icon">
+                      <i class="fas fa-image"></i>
+                    </div>
+                    <div class="app-details">
+                      <h3>Редактор изображений</h3>
+                      <p>
+                        Профессиональная обработка изображений для сайта и
+                        каталогов
+                      </p>
+                    </div>
+                  </div>
+
+                  <div
+                    class="app-card"
+                    data-url="https://caracproduit.onrender.com/"
+                    data-title="Технические характеристики"
+                  >
+                    <div class="app-icon">
+                      <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="app-details">
+                      <h3>Технические характеристики</h3>
+                      <p>
+                        Автоматическое получение и обработка технических
+                        характеристик товаров
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Catégorie Commercial -->
+              <div class="app-category-section">
+                <h2><i class="fas fa-chart-line"></i> Коммерческий отдел</h2>
+                <div class="app-cards">
+                  <div
+                    class="app-card"
+                    data-url="https://chatbotc.onrender.com/"
+                    data-title="Twowin AI"
+                  >
+                    <div class="app-icon">
+                      <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="app-details">
+                      <h3>Twowin AI</h3>
+                      <p>
+                        Интеллектуальный помощник по строительству и ремонту для
+                        клиентов компании
+                      </p>
+                    </div>
+                  </div>
+
+                  <div
+                    class="app-card"
+                    data-url="https://descriptionai-0dh0.onrender.com/"
+                    data-title="Генерация описаний товаров"
+                  >
+                    <div class="app-icon">
+                      <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <div class="app-details">
+                      <h3>Генерация описаний товаров</h3>
+                      <p>
+                        Создание уникальных и привлекательных описаний для
+                        товаров каталога
+                      </p>
+                    </div>
+                  </div>
+
+                  <div
+                    class="app-card"
+                    data-url="https://product-app-94l7.onrender.com/"
+                    data-title="Управление продуктами поставщика"
+                  >
+                    <div class="app-icon">
+                      <i class="fas fa-boxes"></i>
+                    </div>
+                    <div class="app-details">
+                      <h3>Управление продуктами поставщика</h3>
+                      <p>
+                        Проверка наличия продуктов у поставщиков и формализация
+                        наименований товаров
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Catégorie Comptabilité -->
+              <div class="app-category-section">
+                <h2><i class="fas fa-file-invoice-dollar"></i> Бухгалтерия</h2>
+                <div class="app-cards">
+                  <div
+                    class="app-card"
+                    data-url="https://contrattwowin.onrender.com/"
+                    data-title="Генератор Договоров"
+                  >
+                    <div class="app-icon">
+                      <i class="fas fa-file-contract"></i>
+                    </div>
+                    <div class="app-details">
+                      <h3>Генератор Договоров</h3>
+                      <p>
+                        Автоматическое создание и управление договорами с
+                        клиентами и поставщиками
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Les autres contenus d'onglets seront ajoutés dynamiquement -->
+        </div>
+      </div>
     </div>
 
     <!-- Script JavaScript pour la gestion des onglets -->
     <script src="js/main.js"></script>
-</body>
+  </body>
 </html>
